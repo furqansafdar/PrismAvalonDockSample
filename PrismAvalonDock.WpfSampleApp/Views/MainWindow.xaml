@@ -1,0 +1,113 @@
+﻿<mahApps:MetroWindow x:Class="PrismAvalonDock.WpfSampleApp.Views.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:avalonDock="https://github.com/Dirkster99/AvalonDock"
+    xmlns:controls="clr-namespace:PrismAvalonDock.WpfSampleApp"
+    xmlns:fsx="http://schema.fsxtechnologies.com/xaml"
+    xmlns:mahApps="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:prism="http://prismlibrary.com/"
+    Title="{Binding Title}"
+    Width="525"
+    Height="350"
+    prism:ViewModelLocator.AutoWireViewModel="True"
+    ContentRendered="MetroWindow_ContentRendered">
+    <Window.Resources>
+        <DataTemplate x:Key="HamburgerMenuGlyphItemTemplate" DataType="{x:Type mahApps:HamburgerMenuGlyphItem}">
+            <Grid x:Name="RootGrid">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <!--<Image
+                        Margin="12"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Source="{Binding Glyph}"
+                        Stretch="UniformToFill" />-->
+                <TextBlock
+                    Grid.Column="1"
+                    VerticalAlignment="Center"
+                    FontSize="16"
+                    Text="{Binding Label}" />
+            </Grid>
+            <!--  https://github.com/MahApps/MahApps.Metro/issues/2928  -->
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mahApps:HamburgerMenu}}, Path=IsPaneOpen}" Value="False">
+                    <Setter TargetName="RootGrid" Property="ToolTip" Value="{Binding Label, Mode=OneWay}" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <mahApps:HamburgerMenu x:Name="HamburgerMenu"
+            HamburgerWidth="48"
+            IsPaneOpen="True"
+            ItemInvoked="HamburgerMenu_OnItemInvoked"
+            ItemTemplate="{StaticResource HamburgerMenuGlyphItemTemplate}"
+            OptionsItemTemplate="{StaticResource HamburgerMenuGlyphItemTemplate}"
+            SelectedIndex="0"
+            ShowSelectionIndicator="True"
+            VerticalScrollBarOnLeftSide="False">
+            <mahApps:HamburgerMenu.ItemsSource>
+                <mahApps:HamburgerMenuItemCollection x:Name="HamburgerMenuItemCollection" prism:RegionManager.RegionName="{x:Static fsx:RegionNames.MenuRegion}" />
+                <!--<mahApps:HamburgerMenuItemCollection>
+                    <mahApps:HamburgerMenuGlyphItem Label="Home"></mahApps:HamburgerMenuGlyphItem>
+                    <mahApps:HamburgerMenuIconItem Label="Private"></mahApps:HamburgerMenuIconItem>
+                </mahApps:HamburgerMenuItemCollection>-->
+            </mahApps:HamburgerMenu.ItemsSource>
+            <!--<mahApps:HamburgerMenu.OptionsItemsSource>
+                <mahApps:HamburgerMenuItemCollection x:Name="HamburgerOptionItemCollection" prism:RegionManager.RegionName="{x:Static fsx:RegionNames.OptionRegion}" />
+            </mahApps:HamburgerMenu.OptionsItemsSource>-->
+            <mahApps:HamburgerMenu.Content>
+                <!--<ContentControl x:Name="HamburgerMenuContent"
+                        prism:RegionManager.RegionName="{x:Static fsx:RegionNames.TabRegion}"
+                        Focusable="False" />-->
+                <avalonDock:DockingManager x:Name="DockingManager"
+                    prism:RegionManager.RegionName="{x:Static fsx:RegionNames.TabRegion}"
+                    AnchorablesSource="{Binding Anchorables}"
+                    Theme="{Binding SelectedTheme}">
+                    <avalonDock:DockingManager.LayoutItemContainerStyleSelector>
+                        <controls:PanesStyleSelector>
+                            <controls:PanesStyleSelector.AnchorableStyle>
+                                <Style TargetType="{x:Type avalonDock:LayoutAnchorableItem}">
+                                    <Setter Property="Title" Value="{Binding Model.DataContext.Title, PresentationTraceSources.TraceLevel=High}" />
+                                    <Setter Property="IconSource" Value="{Binding Model.DataContext.IconSource}" />
+                                    <!--<Setter Property="Visibility" Value="{Binding Model.DataContext.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}" />-->
+                                    <Setter Property="ContentId" Value="{Binding Model.DataContext.ContentId}" />
+                                    <Setter Property="IsSelected" Value="{Binding Model.DataContext.IsSelected, Mode=TwoWay}" />
+                                    <Setter Property="IsActive" Value="{Binding Model.DataContext.IsActive, Mode=TwoWay}" />
+                                </Style>
+                            </controls:PanesStyleSelector.AnchorableStyle>
+                            <controls:PanesStyleSelector.DocumentStyle>
+                                <Style TargetType="{x:Type avalonDock:LayoutDocumentItem}">
+                                    <Setter Property="Title" Value="{Binding Model.Title}" />
+                                    <Setter Property="ToolTip" Value="{Binding Model.FilePath}" />
+                                    <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
+                                    <Setter Property="IconSource" Value="{Binding Model.IconSource}" />
+                                    <Setter Property="ContentId" Value="{Binding Model.ContentId}" />
+                                </Style>
+                            </controls:PanesStyleSelector.DocumentStyle>
+                        </controls:PanesStyleSelector>
+                    </avalonDock:DockingManager.LayoutItemContainerStyleSelector>
+                    <avalonDock:DockingManager.LayoutUpdateStrategy>
+                        <controls:LayoutInitializer />
+                    </avalonDock:DockingManager.LayoutUpdateStrategy>
+                    <avalonDock:LayoutRoot>
+                        <avalonDock:LayoutPanel Orientation="Vertical">
+                            <avalonDock:LayoutDocumentPaneGroup>
+                                <avalonDock:LayoutDocumentPane ShowHeader="False" />
+                            </avalonDock:LayoutDocumentPaneGroup>
+                            <!--<avalonDock:LayoutDocumentPane ShowHeader="False" />-->
+                            <avalonDock:LayoutAnchorablePane
+                                Name="ToolsPane"
+                                DockHeight="150"
+                                DockMinHeight="50">
+                                <!--<LayoutAnchorable Title="Tool Window 1" ContentId="toolWindow1" />-->
+                            </avalonDock:LayoutAnchorablePane>
+                        </avalonDock:LayoutPanel>
+                    </avalonDock:LayoutRoot>
+                </avalonDock:DockingManager>
+            </mahApps:HamburgerMenu.Content>
+        </mahApps:HamburgerMenu>
+    </Grid>
+</mahApps:MetroWindow>

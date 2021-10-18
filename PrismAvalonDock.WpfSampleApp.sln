@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31605.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrismAvalonDock.WpfSampleApp", "PrismAvalonDock.WpfSampleApp\PrismAvalonDock.WpfSampleApp.csproj", "{4A1ED249-D1A3-4E07-916D-B2BFB70C2817}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{88AC29BF-3C53-43F6-8033-09F222BF1DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreModule", "CoreModule\CoreModule.csproj", "{6964EFD6-63B7-48C6-B126-7E02C7B54D2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4A1ED249-D1A3-4E07-916D-B2BFB70C2817}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A1ED249-D1A3-4E07-916D-B2BFB70C2817}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A1ED249-D1A3-4E07-916D-B2BFB70C2817}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A1ED249-D1A3-4E07-916D-B2BFB70C2817}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6964EFD6-63B7-48C6-B126-7E02C7B54D2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6964EFD6-63B7-48C6-B126-7E02C7B54D2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6964EFD6-63B7-48C6-B126-7E02C7B54D2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6964EFD6-63B7-48C6-B126-7E02C7B54D2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6964EFD6-63B7-48C6-B126-7E02C7B54D2B} = {88AC29BF-3C53-43F6-8033-09F222BF1DBF}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E7F9577-1B33-4B2C-BFB5-39EA5DD116D1}
+	EndGlobalSection
+EndGlobal
