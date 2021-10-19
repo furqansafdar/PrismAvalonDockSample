@@ -2,12 +2,13 @@
 using Prism.Mvvm;
 using PrismAvalonDock.WpfSampleApp.Views;
 using System.Collections.Generic;
+using CoreModule;
 
 namespace PrismAvalonDock.WpfSampleApp.ViewModels
 {
     public class MainWindowViewModel : BindableBase
     {
-        private string _title = "Prism Application";
+        private string _title = "Notes";
         public string Title
         {
             get => _title;

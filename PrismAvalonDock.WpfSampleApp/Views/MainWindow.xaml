@@ -70,17 +70,19 @@
                         <controls:PanesStyleSelector>
                             <controls:PanesStyleSelector.AnchorableStyle>
                                 <Style TargetType="{x:Type avalonDock:LayoutAnchorableItem}">
-                                    <Setter Property="Title" Value="{Binding Model.DataContext.Title, PresentationTraceSources.TraceLevel=High}" />
-                                    <Setter Property="IconSource" Value="{Binding Model.DataContext.IconSource}" />
+                                    <Setter Property="Title" Value="{Binding Model.DataContext.Title}" />
+                                    <!--<Setter Property="IconSource" Value="{Binding Model.DataContext.IconSource}" />
+                                    -->
                                     <!--<Setter Property="Visibility" Value="{Binding Model.DataContext.IsVisible, Mode=TwoWay, Converter={StaticResource BoolToVisibilityConverter}, ConverterParameter={x:Static Visibility.Hidden}}" />-->
+                                    <!--
                                     <Setter Property="ContentId" Value="{Binding Model.DataContext.ContentId}" />
                                     <Setter Property="IsSelected" Value="{Binding Model.DataContext.IsSelected, Mode=TwoWay}" />
-                                    <Setter Property="IsActive" Value="{Binding Model.DataContext.IsActive, Mode=TwoWay}" />
+                                    <Setter Property="IsActive" Value="{Binding Model.DataContext.IsActive, Mode=TwoWay}" />-->
                                 </Style>
                             </controls:PanesStyleSelector.AnchorableStyle>
                             <controls:PanesStyleSelector.DocumentStyle>
                                 <Style TargetType="{x:Type avalonDock:LayoutDocumentItem}">
-                                    <Setter Property="Title" Value="{Binding Model.Title}" />
+                                    <Setter Property="Title" Value="{Binding Model.Title, PresentationTraceSources.TraceLevel=High}" />
                                     <Setter Property="ToolTip" Value="{Binding Model.FilePath}" />
                                     <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}" />
                                     <Setter Property="IconSource" Value="{Binding Model.IconSource}" />
@@ -95,7 +97,7 @@
                     <avalonDock:LayoutRoot>
                         <avalonDock:LayoutPanel Orientation="Vertical">
                             <avalonDock:LayoutDocumentPaneGroup>
-                                <avalonDock:LayoutDocumentPane ShowHeader="False" />
+                                <avalonDock:LayoutDocumentPane ShowHeader="True" />
                             </avalonDock:LayoutDocumentPaneGroup>
                             <!--<avalonDock:LayoutDocumentPane ShowHeader="False" />-->
                             <avalonDock:LayoutAnchorablePane

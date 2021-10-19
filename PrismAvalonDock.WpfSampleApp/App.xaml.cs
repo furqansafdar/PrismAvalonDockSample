@@ -1,4 +1,5 @@
-﻿using AvalonDock;
+﻿using System;
+using AvalonDock;
 using MahApps.Metro.Controls;
 using Prism.DryIoc;
 using Prism.Ioc;
@@ -6,6 +7,8 @@ using Prism.Modularity;
 using Prism.Regions;
 using PrismAvalonDock.WpfSampleApp.Views;
 using System.Windows;
+using CoreModule;
+using CoreModule.Views;
 
 namespace PrismAvalonDock.WpfSampleApp
 {
@@ -21,8 +24,17 @@ namespace PrismAvalonDock.WpfSampleApp
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
+            containerRegistry.RegisterForNavigation<NotesView>();
         }
+
+        protected override void Initialize()
+        {
+            base.Initialize();
+            //RequestNavigate<NotesView>(RegionNames.TabRegion);
+        }
+
+        protected void RequestNavigate<T>(string regionName) =>
+            Container.Resolve<IRegionManager>().RequestNavigate(regionName, new Uri(typeof(T).Name, UriKind.Relative));
 
         protected override void ConfigureModuleCatalog(IModuleCatalog moduleCatalog)
         {

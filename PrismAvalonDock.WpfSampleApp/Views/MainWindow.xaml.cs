@@ -56,7 +56,7 @@ namespace PrismAvalonDock.WpfSampleApp.Views
 
         private void NavigationCallback(NavigationResult obj)
         {
-           
+
         }
     }
 }

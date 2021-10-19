@@ -86,10 +86,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AvalonDock\IAnchorable.cs" />
     <Compile Include="AvalonDock\LayoutInitializer.cs" />
     <Compile Include="AvalonDock\PanesStyleSelector.cs" />
     <Compile Include="AvalonDock\PanesTemplateSelector.cs" />
+    <Compile Include="Prism\RegionBehaviors\AvalonDockSyncBehavior.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

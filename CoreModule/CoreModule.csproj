@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CoreModule.cs" />
     <Compile Include="HamburgerMenuItemBase.cs" />
+    <Compile Include="AvalonDock\Interfaces.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

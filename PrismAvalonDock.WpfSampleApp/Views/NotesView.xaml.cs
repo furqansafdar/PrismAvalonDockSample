@@ -1,4 +1,6 @@
-﻿namespace PrismAvalonDock.WpfSampleApp.Views
+﻿using CoreModule;
+
+namespace PrismAvalonDock.WpfSampleApp.Views
 {
     /// <summary>
     /// Interaction logic for NotesView.xaml

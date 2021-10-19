@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using CoreModule;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace PrismAvalonDock.WpfSampleApp
@@ -14,7 +15,9 @@ namespace PrismAvalonDock.WpfSampleApp
             if (item is IAnchorable)
                 return AnchorableStyle;
 
-            return base.SelectStyle(item, container);
+            return DocumentStyle;
+            
+            //return base.SelectStyle(item, container);
         }
     }
 }
